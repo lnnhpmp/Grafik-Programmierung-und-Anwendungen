@@ -4,9 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+LIBS += -lopengl32 -lglu32 #
 
 TARGET = hellocube
 TEMPLATE = app
@@ -22,8 +24,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    glwidget.cpp \
+    cube.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    glwidget.h \
+    cube.h
+
+RESOURCES += \
+    hellocube.qrc
+
+
+INCLUDEPATH += $$PWD/glew-2.1.0/include
+DEPENDPATH += $$PWD/glew-2.1.0/include
